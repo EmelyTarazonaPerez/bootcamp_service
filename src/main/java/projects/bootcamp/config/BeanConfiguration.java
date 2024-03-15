@@ -7,7 +7,7 @@ import projects.bootcamp.adapters.driven.jpa.mysql.adapter.TechnologyAdapter;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.ITechnologyEntityMapper;
 import projects.bootcamp.adapters.driven.jpa.mysql.repository.ITechnologyRepository;
 import projects.bootcamp.domain.api.ITechnologyServicePort;
-import projects.bootcamp.domain.api.useCase.TechonologyCase;
+import projects.bootcamp.domain.api.useCase.TechnologyCase;
 import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
 
 @Configuration
@@ -21,6 +21,6 @@ public class BeanConfiguration {
     }
     @Bean
     public ITechnologyServicePort technologyServicePort(){
-        return new TechonologyCase(technologyPersistencePort());
+        return new TechnologyCase(technologyPersistencePort());
     }
 }

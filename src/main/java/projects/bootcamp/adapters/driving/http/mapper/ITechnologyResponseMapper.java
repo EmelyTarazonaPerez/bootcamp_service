@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.data.domain.Page;
 import projects.bootcamp.adapters.driving.http.dto.response.TechnologyResponse;
 import projects.bootcamp.domain.model.Technology;
 

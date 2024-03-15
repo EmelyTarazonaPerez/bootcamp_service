@@ -9,6 +9,10 @@ public class Constants {
     public static final String NEGATIVE_NOT_ALLOWED_EXCEPTION_MESSAGE = "Field %s can not receive negative values";
     public static final String SUPPLIER_NOT_FOUND_EXCEPTION_MESSAGE = "The supplier indicated for this product does not exist";
     public static final Long SOLD_OUT_VALUE = 0L;
+
+    public static final String LIMIT_STRING_NAME_TECHNOLOGY = "technology can only have 50 characters";
+    public static final String LIMIT_STRING_DESCRIPTION_TECHNOLOGY = "Description can only have 90 characters";
+
     private Constants(){
         throw new IllegalStateException("utility class");
     }
