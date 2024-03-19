@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import projects.bootcamp.adapters.driving.http.dto.request.capacity.AddCapacityRequest;
 import projects.bootcamp.adapters.driving.http.mapper.capacity.ICapacityRequestMapper;
+import projects.bootcamp.domain.api.ICapacityServicePort;
 import projects.bootcamp.domain.model.Capacity;
-import projects.bootcamp.domain.spi.ICapacityPersistencePort;
 
 @RestController
 @RequestMapping("/capacity")
 @RequiredArgsConstructor
 public class CapacityRestControllerAdapter {
-    private final ICapacityPersistencePort capacityPersistencePort;
+    private final ICapacityServicePort capacityPersistencePort;
     private final ICapacityRequestMapper capacityRequestMapper;
 
     @PostMapping("/save")
