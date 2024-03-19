@@ -8,15 +8,15 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-import projects.bootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
+import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
+import projects.bootcamp.adapters.driving.http.dto.request.technology.AddTechnologyRequest;
 import projects.bootcamp.adapters.driving.http.dto.response.TechnologyResponse;
-import projects.bootcamp.adapters.driving.http.mapper.ITechnologyRequestMapper;
-import projects.bootcamp.adapters.driving.http.mapper.ITechnologyResponseMapper;
+import projects.bootcamp.adapters.driving.http.mapper.technology.ITechnologyRequestMapper;
+import projects.bootcamp.adapters.driving.http.mapper.technology.ITechnologyResponseMapper;
+import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/technology")
@@ -28,14 +28,14 @@ public class TechnologyRestControllerAdapter {
     private final ITechnologyResponseMapper technologyResponseMapper;
 
     @PostMapping("/save")
-    public ResponseEntity<Void> technology (@Valid @RequestBody AddTechnologyRequest request){
-        technologyPersistencePort.saveTechnology(technologyRequestMapper.addRequestToTechnology(request));
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<TechnologyEntity> technology (@Valid @RequestBody AddTechnologyRequest request){
+        return new ResponseEntity<>(technologyPersistencePort.saveTechnology(
+                technologyRequestMapper.addRequestToTechnology(request)),HttpStatus.OK);
     }
 
     @GetMapping("")
     public ResponseEntity<List<TechnologyResponse>> getAll (@PageableDefault(
-            page=0, size = 2, sort = Sort.by(Sort.Direction.ASC, "name")) Pageable pageable){
+        page=0, size = 2, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable){
         return new ResponseEntity<>(technologyResponseMapper.toListTechnologyResponse(
                 technologyPersistencePort.getAll(pageable)), HttpStatus.OK);
     }

@@ -1,6 +1,6 @@
 package projects.bootcamp.domain.api.useCase;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import projects.bootcamp.domain.api.ITechnologyServicePort;
 import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
@@ -13,8 +13,9 @@ public class TechnologyCase implements ITechnologyServicePort {
         this.technologyPersistencePort = technologyPersistencePort;
     }
     @Override
-    public void createTechnology(Technology technology) {
+    public String createTechnology(Technology technology) {
         technologyPersistencePort.saveTechnology(technology);
+        return "ok";
     }
 
     @Override

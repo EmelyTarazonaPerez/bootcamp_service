@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
 @Table(name="technology")
@@ -20,4 +22,6 @@ public class TechnologyEntity {
     private int idTechnology;
     private String name;
     private String description;
+    @ManyToMany(mappedBy = "technologyEntityList")
+    private List<CapacityEntity> capacityEntityList;
 }

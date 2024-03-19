@@ -1,47 +1,37 @@
 package projects.bootcamp.domain.model;
 
+import java.util.List;
+
 public class Capacity {
-    private int id_capacity;
+    private int idCapacity;
     private String name;
     private String description;
-    private String row_3;
+    private List<Technology> technologyList;
 
-    public Capacity(int id_capacity, String name, String description, String row_3) {
-        this.id_capacity = id_capacity;
+    public Capacity(int idCapacity, String name, String description, List<Technology> technologyList) {
+        this.idCapacity = idCapacity;
         this.name = name;
         this.description = description;
-        this.row_3 = row_3;
+        this.technologyList = technologyList;
     }
-
-    public int getId_capacity() {
-        return id_capacity;
+    public int getIdCapacity() {
+        return idCapacity;
     }
-
     public String getName() {
         return name;
     }
-
     public String getDescription() {
         return description;
     }
-
-    public String getRow_3() {
-        return row_3;
+    public void setIdCapacity(int idCapacity) {
+        this.idCapacity = idCapacity;
     }
-
-    public void setId_capacity(int id_capacity) {
-        this.id_capacity = id_capacity;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public void setRow_3(String row_3) {
-        this.row_3 = row_3;
-    }
+    public List<Technology> getTechnologyList() { return technologyList; }
+    public void setTechnologyList(List<Technology> technologyList) { this.technologyList = technologyList; }
 }

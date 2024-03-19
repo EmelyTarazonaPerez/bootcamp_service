@@ -1,4 +1,4 @@
-package projects.bootcamp.adapters.driving.http.dto.request;
+package projects.bootcamp.adapters.driving.http.dto.request.technology;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +16,7 @@ import projects.bootcamp.config.Constants;
 public class AddTechnologyRequest {
 
     @Valid
+    private int idTechnology;
 
     @NotNull(message = Constants.EMPTY_FIELD_EXCEPTION_MESSAGE)
     @NotBlank(message = Constants.EMPTY_FIELD_EXCEPTION_MESSAGE)
