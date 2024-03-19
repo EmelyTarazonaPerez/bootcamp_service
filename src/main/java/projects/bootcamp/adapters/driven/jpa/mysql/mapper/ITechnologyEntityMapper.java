@@ -12,8 +12,8 @@ import java.util.List;
     unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface ITechnologyEntityMapper {
-    @Mappings({
-        @Mapping(source = "idTechnology", target = "id_technology"),
+    @Mappings( value = {
+        @Mapping(source = "id", target = "idTechnology"),
         @Mapping(source = "name", target = "name"),
         @Mapping(source = "description", target = "description"),
     })

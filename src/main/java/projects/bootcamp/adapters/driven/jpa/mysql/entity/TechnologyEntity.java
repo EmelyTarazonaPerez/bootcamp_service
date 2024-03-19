@@ -10,14 +10,13 @@ import lombok.Setter;
 @Entity
 @Table(name="technology")
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class TechnologyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_technology")
-    private int idTechnology;
+    private int id;
     private String name;
     private String description;
 }

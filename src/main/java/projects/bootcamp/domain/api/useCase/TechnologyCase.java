@@ -13,10 +13,9 @@ public class TechnologyCase implements ITechnologyServicePort {
         this.technologyPersistencePort = technologyPersistencePort;
     }
     @Override
-    public void createTechnology(Technology technology) {
-        technologyPersistencePort.saveTechnology(technology);
+    public Technology createTechnology(Technology technology) {
+        return technologyPersistencePort.saveTechnology(technology);
     }
-
     @Override
     public List<Technology> getAll(Pageable pageable) {
         return technologyPersistencePort.getAll(pageable);

@@ -16,16 +16,16 @@ import java.util.List;
 )
 public interface ITechnologyRequestMapper {
 
-    @Mappings({
-            @Mapping(target = "id_technology", ignore = true),
+    @Mappings( value = {
+            @Mapping(target = "idTechnology", ignore = true),
             @Mapping(source = "name", target = "name"),
             @Mapping(source = "description", target = "description")
     })
     Technology addRequestToTechnology(AddTechnologyRequest addTechnologyRequest);
     List<Technology> addRequestToTechnologies(List<AddTechnologyRequest> listAddTechnologyRequest);
 
-    @Mappings({
-            @Mapping(source = "id", target = "id_technology"),
+    @Mappings( value = {
+            @Mapping(source = "id", target = "idTechnology"),
             @Mapping(source = "name", target = "name"),
             @Mapping(source = "description", target = "description")
     })

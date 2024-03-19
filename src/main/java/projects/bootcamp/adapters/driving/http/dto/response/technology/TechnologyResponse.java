@@ -1,4 +1,4 @@
-package projects.bootcamp.adapters.driving.http.dto.response;
+package projects.bootcamp.adapters.driving.http.dto.response.technology;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

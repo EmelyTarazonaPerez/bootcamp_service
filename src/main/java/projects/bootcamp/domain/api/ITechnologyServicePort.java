@@ -7,7 +7,7 @@ import projects.bootcamp.domain.model.Technology;
 import java.util.List;
 
 public interface ITechnologyServicePort {
-    void createTechnology(Technology technology);
+    Technology createTechnology(Technology technology);
     List<Technology> getAll(Pageable pageable);
 
 }
