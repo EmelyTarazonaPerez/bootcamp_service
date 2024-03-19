@@ -1,4 +1,4 @@
-package projects.bootcamp.adapters.driving.http.mapper;
+package projects.bootcamp.adapters.driving.http.mapper.technology;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,7 +18,7 @@ public interface ITechnologyResponseMapper {
     @Mappings({
         @Mapping(target = "id", ignore = true),
         @Mapping(source = "name", target = "name"),
-        @Mapping(source = "description", target = "description")
+        @Mapping(source = "description", target = "description"),
     })
     TechnologyResponse toTechnologyResponse (Technology technology);
     List<TechnologyResponse> toListTechnologyResponse (List<Technology> technologies);
