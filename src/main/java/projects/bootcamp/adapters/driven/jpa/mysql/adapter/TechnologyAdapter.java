@@ -1,12 +1,9 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
@@ -16,6 +13,7 @@ import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,11 +22,15 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     private final ITechnologyRepository technologyRepository;
     private final ITechnologyEntityMapper technologyEntityMapper;
     @Override
-    public void saveTechnology(Technology technology) {
-        if (technologyRepository.findByName(technology.getName()).isPresent()) {
+    public Optional<Technology> saveTechnology(Technology technology) {
+        try {
+            TechnologyEntity technologyEntityResp = technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology));
+            Technology technologyResp = technologyEntityMapper.toTechnologyModel(technologyEntityResp);
+            technologyResp.setIdTechnology(technologyEntityResp.getId());
+            return Optional.of(technologyResp);
+        } catch (ProductAlreadyExistsException e) {
             throw new ProductAlreadyExistsException();
         }
-        technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology));
     }
 
     @Override

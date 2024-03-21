@@ -4,8 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.data.domain.Page;
-import projects.bootcamp.adapters.driving.http.dto.response.TechnologyResponse;
+import projects.bootcamp.adapters.driving.http.dto.response.technology.TechnologyResponse;
 import projects.bootcamp.domain.model.Technology;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 )
 public interface ITechnologyResponseMapper {
     @Mappings({
-        @Mapping(target = "id", ignore = true),
+        @Mapping(source = "idTechnology", target = "id"),
         @Mapping(source = "name", target = "name"),
         @Mapping(source = "description", target = "description")
     })
