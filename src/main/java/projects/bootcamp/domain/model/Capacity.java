@@ -1,6 +1,7 @@
 package projects.bootcamp.domain.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Capacity {
     private int idCapacity;

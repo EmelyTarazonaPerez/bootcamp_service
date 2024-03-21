@@ -1,5 +1,7 @@
 package projects.bootcamp.domain.model;
 
+import java.util.Objects;
+
 public class Technology {
     private int idTechnology;
     private String name;
@@ -13,6 +15,18 @@ public class Technology {
 
     public int getIdTechnology() {
         return idTechnology;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Technology that)) return false;
+        return getIdTechnology() == that.getIdTechnology() && Objects.equals(getName(), that.getName()) && Objects.equals(getDescription(), that.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdTechnology(), getName(), getDescription());
     }
 
     public String getName() {
