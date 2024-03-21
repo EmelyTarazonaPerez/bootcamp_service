@@ -18,13 +18,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TechnologyRestControllerAdapter {
 
-    private final ITechnologyServicePort technologyPersistencePort;
+    private final ITechnologyServicePort technologyServicePort;
     private final ITechnologyRequestMapper technologyRequestMapper;
     private final ITechnologyResponseMapper technologyResponseMapper;
 
     @PostMapping("/save")
     public ResponseEntity<Optional<Technology>> technology (@Valid @RequestBody AddTechnologyRequest request){
-        return new ResponseEntity<>(technologyPersistencePort.createTechnology(
+        return new ResponseEntity<>(technologyServicePort.createTechnology(
                 technologyRequestMapper.addRequestToTechnology(request)), HttpStatus.OK);
     }
 
