@@ -11,6 +11,8 @@ import projects.bootcamp.adapters.driving.http.mapper.ITechnologyResponseMapper;
 import projects.bootcamp.domain.api.ITechnologyServicePort;
 import projects.bootcamp.domain.model.Technology;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/technology")
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class TechnologyRestControllerAdapter {
     private final ITechnologyResponseMapper technologyResponseMapper;
 
     @PostMapping("/save")
-    public ResponseEntity<Technology> technology (@Valid @RequestBody AddTechnologyRequest request){
+    public ResponseEntity<Optional<Technology>> technology (@Valid @RequestBody AddTechnologyRequest request){
         return new ResponseEntity<>(technologyPersistencePort.createTechnology(
                 technologyRequestMapper.addRequestToTechnology(request)), HttpStatus.OK);
     }
