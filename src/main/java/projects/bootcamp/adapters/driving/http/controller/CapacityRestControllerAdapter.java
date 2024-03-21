@@ -17,12 +17,12 @@ import projects.bootcamp.domain.model.Capacity;
 @RequestMapping("/capacity")
 @RequiredArgsConstructor
 public class CapacityRestControllerAdapter {
-    private final ICapacityServicePort capacityPersistencePort;
+    private final ICapacityServicePort capacityServicePort;
     private final ICapacityRequestMapper capacityRequestMapper;
 
     @PostMapping("/save")
     public ResponseEntity<Capacity> capacity ( @Valid @RequestBody AddCapacityRequest request){
-        return new ResponseEntity<>(capacityPersistencePort.save(
+        return new ResponseEntity<>(capacityServicePort.save(
                 capacityRequestMapper.addRequestToCapacity(request)), HttpStatus.OK);
     }
 }
