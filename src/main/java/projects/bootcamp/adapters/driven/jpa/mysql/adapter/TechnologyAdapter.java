@@ -23,14 +23,14 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     private final ITechnologyEntityMapper technologyEntityMapper;
     @Override
     public Optional<Technology> saveTechnology(Technology technology) {
-        try {
-            TechnologyEntity technologyEntityResp = technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology));
-            Technology technologyResp = technologyEntityMapper.toTechnologyModel(technologyEntityResp);
-            technologyResp.setIdTechnology(technologyEntityResp.getId());
-            return Optional.of(technologyResp);
-        } catch (ProductAlreadyExistsException e) {
-            throw new ProductAlreadyExistsException();
+        if (isPresentTechnology(technology).isEmpty()){
+            throw new ProductAlreadyExistsException("producto repetido");
         }
+
+        TechnologyEntity technologyEntityResp = technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology));
+        Technology technologyResp = technologyEntityMapper.toTechnologyModel(technologyEntityResp);
+        technologyResp.setIdTechnology(technologyEntityResp.getId());
+        return Optional.of(technologyResp);
     }
 
     @Override
@@ -38,5 +38,8 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
         return technologyEntityMapper.toTechnologiesModel(technologyRepository.findAll(pageable));
     }
 
+    protected Optional<TechnologyEntity> isPresentTechnology (Technology technology) {
+        return technologyRepository.findByName(technology.getName());
+    }
 
 }

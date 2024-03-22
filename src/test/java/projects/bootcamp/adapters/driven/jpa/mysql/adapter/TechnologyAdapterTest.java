@@ -15,6 +15,7 @@ import projects.bootcamp.domain.model.Technology;
 import java.util.Optional;
 
 import static org.awaitility.Awaitility.given;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,13 +43,10 @@ class TechnologyAdapterTest {
     @DisplayName("Deberia devolver una exception cuando el nombre sea repetido en la base de datos")
     void saveTechnologyErrorBd() {
         Technology technology = new Technology(1,name, description);
-        TechnologyEntity technologyEntityResp = technologyEntityMapper.toTechnologyEntity(technology);
+        TechnologyEntity entityRespon = new TechnologyEntity(1, name, description);
 
-        when(technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology)))
-                .thenReturn(new ProductAlreadyExistsException());
-
-        final Optional<Technology> response = technologyAdapter.saveTechnology(technology);
-        Assertions.assertEquals(technology, response);
+        when(this.technologyRepository.findByName(technology.getName())).thenReturn(Optional.empty());
+        assertThrows(ProductAlreadyExistsException.class, ()-> this.technologyAdapter.saveTechnology(technology));
     }
 
 }
