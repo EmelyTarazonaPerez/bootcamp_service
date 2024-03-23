@@ -1,6 +1,5 @@
 package projects.bootcamp.domain.api;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import projects.bootcamp.domain.model.Technology;
 

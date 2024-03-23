@@ -10,6 +10,7 @@ import projects.bootcamp.adapters.driven.jpa.mysql.repository.ITechnologyReposit
 import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,17 +20,22 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     private final ITechnologyEntityMapper technologyEntityMapper;
 
     @Override
-    public TechnologyEntity saveTechnology(Technology technology) {
-        if (Boolean.TRUE.equals(isPresentTechnology(technology)))
-            throw new ProductAlreadyExistsException();
+    public Optional<Technology> saveTechnology(Technology technology) {
+        if (isPresentTechnology(technology).isEmpty()){
+            throw new ProductAlreadyExistsException("producto repetido");
+        }
 
-        return technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology));
+        TechnologyEntity technologyEntityResp = technologyRepository.save(technologyEntityMapper.toTechnologyEntity(technology));
+        Technology technologyResp = technologyEntityMapper.toTechnologyModel(technologyEntityResp);
+        return Optional.of(technologyResp);
     }
+
     @Override
     public List<Technology> getAll(Pageable pageable) {
         return technologyEntityMapper.toTechnologiesModel(technologyRepository.findAll(pageable));
     }
-    protected Boolean isPresentTechnology (Technology technology) {
-        return technologyRepository.findByName(technology.getName()).isPresent();
+
+    protected Optional<TechnologyEntity> isPresentTechnology (Technology technology) {
+        return technologyRepository.findByName(technology.getName());
     }
 }

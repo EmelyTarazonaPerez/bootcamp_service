@@ -13,6 +13,8 @@ import projects.bootcamp.adapters.driving.http.mapper.capacity.ICapacityRequestM
 import projects.bootcamp.domain.api.ICapacityServicePort;
 import projects.bootcamp.domain.model.Capacity;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/capacity")
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class CapacityRestControllerAdapter {
     private final ICapacityRequestMapper capacityRequestMapper;
 
     @PostMapping("/save")
-    public ResponseEntity<Capacity> capacity ( @Valid @RequestBody AddCapacityRequest request){
+    public ResponseEntity<Capacity> capacity (@Valid @RequestBody AddCapacityRequest request){
         return new ResponseEntity<>(capacityServicePort.save(
                 capacityRequestMapper.addRequestToCapacity(request)), HttpStatus.OK);
     }

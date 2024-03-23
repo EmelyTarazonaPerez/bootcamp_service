@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
 import projects.bootcamp.config.Constants;
 import projects.bootcamp.domain.exception.EmptyFieldException;
+import projects.bootcamp.domain.exception.ErrorListTechnologies;
 import projects.bootcamp.domain.exception.NegativeNotAllwedException;
 
 import java.time.LocalDateTime;
@@ -44,6 +45,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
+    @ExceptionHandler(ErrorListTechnologies.class)
+    public ResponseEntity<ExceptionResponse> handleErrorListTechnologies (ErrorListTechnologies exception){
+        return ResponseEntity.badRequest().body(new ExceptionResponse
+                (String.format( exception.getMessage()),
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()
+                ));
+    }
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException exception,
