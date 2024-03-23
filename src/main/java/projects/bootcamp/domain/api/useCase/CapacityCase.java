@@ -1,5 +1,6 @@
 package projects.bootcamp.domain.api.useCase;
 
+import org.springframework.data.domain.Pageable;
 import projects.bootcamp.domain.api.ICapacityServicePort;
 import projects.bootcamp.domain.exception.ErrorListTechnologies;
 import projects.bootcamp.domain.model.Capacity;
@@ -8,7 +9,6 @@ import projects.bootcamp.domain.spi.ICapacityPersistencePort;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public class CapacityCase implements ICapacityServicePort {
@@ -18,24 +18,26 @@ public class CapacityCase implements ICapacityServicePort {
     public CapacityCase (ICapacityPersistencePort capacityPersistencePort){
         this.capacityPersistencePort = capacityPersistencePort;
     }
-    private final String ERROR_TECHNOLOGY_EQUALS = "Technologies are repeated";
-    private final String ERROR_LIMIT_AND_MAX_TECH = "You must have at least 3 registered technologies and no maximum of 20";
 
     @Override
     public Capacity save(Capacity capacity) {
         if (validInsertNumbTechnology(capacity)){
-            throw new ErrorListTechnologies(ERROR_LIMIT_AND_MAX_TECH);
+            String messageError = "You must have at least 3 registered technologies and no maximum of 20";
+            throw new ErrorListTechnologies(messageError);
         }
         Set<Technology> technologySet = convertirListToSet(capacity);
 
         if (thereTechnologyEquals(capacity.getTechnologyList(), technologySet)){
-            throw new ErrorListTechnologies(ERROR_TECHNOLOGY_EQUALS);
+            String messageError = "Technologies are repeated";
+            throw new ErrorListTechnologies(messageError);
         }
         return capacityPersistencePort.save(capacity);
     }
     @Override
-    public List<Capacity> getAll() {
-        return null;
+    public List<Capacity> getAll(Pageable pageable, int byCant) {
+        List<Capacity> capacityList = capacityPersistencePort.getAll(pageable);
+         return capacityListByCantTechnology(capacityList, byCant);
+
     }
 
     protected boolean validInsertNumbTechnology (Capacity capacity) {
@@ -47,5 +49,12 @@ public class CapacityCase implements ICapacityServicePort {
     }
     protected boolean thereTechnologyEquals (List<Technology> technologiesList , Set<Technology> technologieSet ) {
         return technologieSet.size() < technologiesList.size();
+    }
+
+    protected List<Capacity> capacityListByCantTechnology (List<Capacity> capacityList, int byCant) {
+        return capacityList.stream().filter(capacity ->  {
+            if (byCant == 0) return true;
+            else return capacity.getTechnologyList().size() == byCant;
+        } ).toList();
     }
 }

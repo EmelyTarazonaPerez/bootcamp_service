@@ -6,6 +6,7 @@ import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TechnologyCase implements ITechnologyServicePort {
     private final ITechnologyPersistencePort technologyPersistencePort;
@@ -13,9 +14,8 @@ public class TechnologyCase implements ITechnologyServicePort {
         this.technologyPersistencePort = technologyPersistencePort;
     }
     @Override
-    public String createTechnology(Technology technology) {
-        technologyPersistencePort.saveTechnology(technology);
-        return "ok";
+    public Optional<Technology> createTechnology(Technology technology) {
+        return technologyPersistencePort.saveTechnology(technology);
     }
 
     @Override

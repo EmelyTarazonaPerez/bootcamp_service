@@ -1,8 +1,11 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.mapper;
 
 import org.mapstruct.*;
+import org.springframework.data.domain.Page;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.domain.model.Capacity;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
@@ -16,6 +19,7 @@ public interface ICapacityEntityMapper {
             @Mapping(source = "technologyEntityList", target = "technologyList")
     })
     Capacity toCapacity (CapacityEntity capacityEntity);
+    List<Capacity> toCapacityList (Page<CapacityEntity> capacityEntityList);
     @InheritInverseConfiguration
     CapacityEntity toCapacityEntity (Capacity capacity);
 }

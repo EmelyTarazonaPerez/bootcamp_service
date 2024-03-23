@@ -11,7 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class CapacityResponse {
+    private int id;
     private String name;
     private String description;
-    private List<Technology> technologyList;
+    private List<AssociatedTechnology> technologyList;
 }
