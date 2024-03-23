@@ -8,10 +8,10 @@ import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExist
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.ICapacityEntityMapper;
 import projects.bootcamp.adapters.driven.jpa.mysql.repository.ICapacityRepository;
 import projects.bootcamp.domain.model.Capacity;
-import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ICapacityPersistencePort;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,15 +23,17 @@ public class CapacityAdapter implements ICapacityPersistencePort {
 
     @Override
     public Capacity save(Capacity capacity) {
+        if (isPresentCapacity(capacity).isPresent()) {
+            throw new ProductAlreadyExistsException("Error");
+        }
         CapacityEntity capacityEntity = capacityEntityMapper.toCapacityEntity(capacity);
-        capacityRepository.save(capacityEntity);
-        return capacity;
+        return capacityEntityMapper.toCapacity(capacityRepository.save(capacityEntity));
     }
     @Override
     public List<Capacity> getAll() {
         return null;
     }
-    protected Boolean isPresentCapacity (Capacity capacity) {
-        return capacityRepository.findByName(capacity.getName()).isPresent();
+    protected Optional<CapacityEntity> isPresentCapacity (Capacity capacity) {
+        return capacityRepository.findByName(capacity.getName());
     }
 }

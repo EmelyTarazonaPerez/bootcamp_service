@@ -7,6 +7,6 @@ import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import java.util.Optional;
 
 public interface ICapacityRepository extends JpaRepository<CapacityEntity, Integer> {
-    Optional<TechnologyEntity> findByName (String name);
+    Optional<CapacityEntity> findByName (String name);
 
 }

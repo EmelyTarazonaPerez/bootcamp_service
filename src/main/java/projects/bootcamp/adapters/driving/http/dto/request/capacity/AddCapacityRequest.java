@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.Getter;
 import projects.bootcamp.adapters.driving.http.dto.request.technology.AddTechnologyRequest;
 import projects.bootcamp.config.Constants;
+import projects.bootcamp.domain.model.Technology;
 
 import java.util.List;
 
