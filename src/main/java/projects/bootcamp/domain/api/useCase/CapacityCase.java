@@ -7,9 +7,8 @@ import projects.bootcamp.domain.model.Capacity;
 import projects.bootcamp.domain.model.Technology;
 import projects.bootcamp.domain.spi.ICapacityPersistencePort;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CapacityCase implements ICapacityServicePort {
 
@@ -34,12 +33,10 @@ public class CapacityCase implements ICapacityServicePort {
         return capacityPersistencePort.save(capacity);
     }
     @Override
-    public List<Capacity> getAll(Pageable pageable, int byCant) {
+    public List<Capacity> getAll(Pageable pageable, int byCant, String name) {
         List<Capacity> capacityList = capacityPersistencePort.getAll(pageable);
-         return capacityListByCantTechnology(capacityList, byCant);
-
+        return techAssociated(capacityList, name, byCant);
     }
-
     protected boolean validInsertNumbTechnology (Capacity capacity) {
         return capacity.getTechnologyList().size() < 3 || capacity.getTechnologyList().size() > 20;
     }
@@ -56,5 +53,11 @@ public class CapacityCase implements ICapacityServicePort {
             if (byCant == 0) return true;
             else return capacity.getTechnologyList().size() == byCant;
         } ).toList();
+    }
+    public List<Capacity> techAssociated (List<Capacity> capacityList, String name, int byCant) {
+        if (name == null) return capacityListByCantTechnology(capacityList, byCant);
+        return capacityListByCantTechnology(capacityList, byCant).stream()
+                .filter(capacity -> capacity.getTechnologyList().stream()
+                        .anyMatch(technology -> technology.getName().equals(name))).toList();
     }
 }

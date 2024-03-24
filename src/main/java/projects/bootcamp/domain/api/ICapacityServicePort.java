@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ICapacityServicePort {
     Capacity save (Capacity capacity);
-    List<Capacity> getAll (Pageable pageable, int byCant);
+    List<Capacity> getAll (Pageable pageable, int byCant, String name);
 }

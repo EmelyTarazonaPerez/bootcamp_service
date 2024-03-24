@@ -16,7 +16,6 @@ import projects.bootcamp.domain.api.ICapacityServicePort;
 import projects.bootcamp.domain.model.Capacity;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/capacity")
@@ -33,9 +32,10 @@ public class CapacityRestControllerAdapter {
                 capacityRequestMapper.addRequestToCapacity(request)), HttpStatus.OK);
     }
     @GetMapping("")
-    public ResponseEntity<List<CapacityResponse>> getAll( @PageableDefault( page=0,
-            size = 2, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable, @RequestParam int byCant ) {
+    public ResponseEntity<List<CapacityResponse>>
+    getAll( @PageableDefault( page = 0, size = 2, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable,
+            @RequestParam (defaultValue = "0") int byCant, String nameTech ) {
         return new ResponseEntity<>(capacityResponseMapper.toListCapacityResponse(
-                capacityServicePort.getAll(pageable, byCant)), HttpStatus.OK);
+                capacityServicePort.getAll(pageable, byCant, nameTech)), HttpStatus.OK);
     }
 }
