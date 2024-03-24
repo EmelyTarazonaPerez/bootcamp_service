@@ -4,9 +4,10 @@ import org.springframework.data.domain.Pageable;
 import projects.bootcamp.domain.model.Technology;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ITechnologyServicePort {
-    String createTechnology(Technology technology);
+    Optional<Technology> createTechnology(Technology technology);
     List<Technology> getAll(Pageable pageable);
 
 }

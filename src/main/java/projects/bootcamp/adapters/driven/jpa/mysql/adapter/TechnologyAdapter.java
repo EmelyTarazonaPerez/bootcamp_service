@@ -21,7 +21,7 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
 
     @Override
     public Optional<Technology> saveTechnology(Technology technology) {
-        if (isPresentTechnology(technology).isEmpty()){
+        if (isPresentTechnology(technology).isPresent()){
             throw new ProductAlreadyExistsException("producto repetido");
         }
 

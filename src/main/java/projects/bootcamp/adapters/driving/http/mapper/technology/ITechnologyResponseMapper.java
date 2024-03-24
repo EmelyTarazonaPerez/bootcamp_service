@@ -16,8 +16,8 @@ import java.util.Optional;
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface ITechnologyResponseMapper {
-    @Mappings({
-        @Mapping(target = "id", ignore = true),
+    @Mappings(value = {
+        @Mapping(source = "idTechnology", target = "id"),
         @Mapping(source = "name", target = "name"),
         @Mapping(source = "description", target = "description"),
     })
