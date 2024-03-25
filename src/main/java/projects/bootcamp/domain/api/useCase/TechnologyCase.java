@@ -17,7 +17,6 @@ public class TechnologyCase implements ITechnologyServicePort {
     public Optional<Technology> createTechnology(Technology technology) {
         return technologyPersistencePort.saveTechnology(technology);
     }
-
     @Override
     public List<Technology> getAll(Pageable pageable) {
         return technologyPersistencePort.getAll(pageable);

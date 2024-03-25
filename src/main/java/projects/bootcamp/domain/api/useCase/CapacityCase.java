@@ -54,7 +54,7 @@ public class CapacityCase implements ICapacityServicePort {
             else return capacity.getTechnologyList().size() == byCant;
         } ).toList();
     }
-    public List<Capacity> techAssociated (List<Capacity> capacityList, String name, int byCant) {
+    protected List<Capacity> techAssociated (List<Capacity> capacityList, String name, int byCant) {
         if (name == null) return capacityListByCantTechnology(capacityList, byCant);
         return capacityListByCantTechnology(capacityList, byCant).stream()
                 .filter(capacity -> capacity.getTechnologyList().stream()

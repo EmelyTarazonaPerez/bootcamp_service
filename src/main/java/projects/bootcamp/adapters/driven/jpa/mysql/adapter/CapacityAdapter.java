@@ -2,6 +2,7 @@ package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
@@ -24,17 +25,16 @@ public class CapacityAdapter implements ICapacityPersistencePort {
 
     @Override
     public Capacity save(Capacity capacity) {
-        if (isPresentCapacity(capacity).isPresent()) {
+        try {
+            CapacityEntity capacityEntity = capacityEntityMapper.toCapacityEntity(capacity);
+            return capacityEntityMapper.toCapacity(capacityRepository.save(capacityEntity));
+        } catch (Exception e) {
             throw new ProductAlreadyExistsException("Error");
         }
-        CapacityEntity capacityEntity = capacityEntityMapper.toCapacityEntity(capacity);
-        return capacityEntityMapper.toCapacity(capacityRepository.save(capacityEntity));
     }
     @Override
     public List<Capacity> getAll(Pageable pageable) {
         return capacityEntityMapper.toCapacityList(capacityRepository.findAll(pageable));
     }
-    protected Optional<CapacityEntity> isPresentCapacity (Capacity capacity) {
-        return capacityRepository.findByName(capacity.getName());
-    }
+
 }
