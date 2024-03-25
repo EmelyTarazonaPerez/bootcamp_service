@@ -13,7 +13,7 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
-public interface IBoorcampEntityMapper {
+public interface IBootcampEntityMapper {
     @Mappings(value = {
             @Mapping(source = "idCapacity", target = "idCapacity"),
             @Mapping(source="name", target="name"),
