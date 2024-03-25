@@ -1,5 +1,6 @@
 package projects.bootcamp.domain.spi;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import projects.bootcamp.domain.model.Capacity;
 

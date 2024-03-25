@@ -42,7 +42,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ProductAlreadyExistsException.class)
     public ResponseEntity<ExceptionResponse> handleProductAlreadyExistsException(ProductAlreadyExistsException exception){
         return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.PRODUCT_ALREADY_EXISTS_EXCEPTION_MESSAGE,
-                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+                HttpStatus.CONFLICT.toString(), LocalDateTime.now()));
     }
 
     @ExceptionHandler(ErrorListTechnologies.class)

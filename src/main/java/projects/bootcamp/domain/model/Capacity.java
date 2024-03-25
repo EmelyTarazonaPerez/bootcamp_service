@@ -9,6 +9,9 @@ public class Capacity {
     private String description;
     private List<Technology> technologyList;
 
+    public Capacity() {
+    }
+
     public Capacity(int idCapacity, String name, String description, List<Technology> technologyList) {
         this.idCapacity = idCapacity;
         this.name = name;

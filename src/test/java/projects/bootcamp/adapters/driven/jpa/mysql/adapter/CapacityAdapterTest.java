@@ -7,8 +7,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Pageable;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
+import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.ICapacityEntityMapper;
 import projects.bootcamp.adapters.driven.jpa.mysql.repository.ICapacityRepository;
 import projects.bootcamp.domain.model.Capacity;
@@ -16,11 +18,11 @@ import projects.bootcamp.domain.model.Technology;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static projects.bootcamp.contants.GetAssociatedTechList.getTechnologyEntityList;
 
 @ExtendWith(MockitoExtension.class)
 class CapacityAdapterTest {
@@ -29,20 +31,16 @@ class CapacityAdapterTest {
     private ICapacityRepository capacityRepository;
     @Mock
     private ICapacityEntityMapper capacityEntityMapper;
-
+    @Mock
+    private Pageable pegeableMock;
     @InjectMocks
     private CapacityAdapter capacityAdapter;
 
     @Test
     @DisplayName("return a capacity if capacity saved correctly")
     void saveCapacityBD() {
-        final List<TechnologyEntity> technologyEntitylist = getTechnologyEntityList();
-
-        List<Technology> technologyList = new ArrayList<>();
-
-        Capacity capacity = new Capacity(1, "Full Stack", "Any description",technologyList);
-        CapacityEntity capacityEntity = new CapacityEntity(1, "Full stack", "Any description", technologyEntitylist);
-
+        Capacity capacity = new Capacity(1, "Full Stack", "Any description", new ArrayList<>());
+        CapacityEntity capacityEntity = new CapacityEntity(1, "Full stack", "Any description", getTechnologyEntityList());
         //When
         when(this.capacityEntityMapper.toCapacityEntity(capacity)).thenReturn(capacityEntity);
         when(this.capacityRepository.save(capacityEntity)).thenReturn(capacityEntity);
@@ -52,16 +50,21 @@ class CapacityAdapterTest {
         Assertions.assertEquals(1, capacityResponse.getIdCapacity());
         Assertions.assertEquals(capacity.getName(), capacityResponse.getName());
     }
-
-    private static List<TechnologyEntity> getTechnologyEntityList() {
-        TechnologyEntity technology1 = new TechnologyEntity(1, "Java1", "Any description", null);
-        TechnologyEntity technology2 = new TechnologyEntity(2, "Java2", "Any description", null);
-        TechnologyEntity technology3 = new TechnologyEntity(3, "Java3", "Any description", null);
-
-        List<TechnologyEntity> technologyEntitylist = new ArrayList<>();
-        technologyEntitylist.add(technology1);
-        technologyEntitylist.add(technology2);
-        technologyEntitylist.add(technology3);
-        return technologyEntitylist;
+    @Test
+    @DisplayName("Retornar error si una capacidad ya existe en la base de datos")
+    void saveErrorBD() {
+        when(capacityRepository.save(any(CapacityEntity.class))).thenThrow(new ProductAlreadyExistsException("message"));
+        assertThrows(ProductAlreadyExistsException.class, ()-> {
+            this.capacityAdapter.save(new Capacity());
+        });
     }
+    @Test
+    @DisplayName("Guardar retornar lista de capacidades en la base de datos")
+    void getAll() {
+        List<Capacity> capacities = new ArrayList<>();
+        when(capacityEntityMapper.toCapacityList(capacityRepository.findAll(pegeableMock))).thenReturn(capacities);
+        final List<Capacity> capacityList = capacityAdapter.getAll(pegeableMock);
+         assertNotNull(capacityList);
+    }
+
 }
