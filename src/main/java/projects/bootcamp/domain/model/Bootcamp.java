@@ -1,37 +1,49 @@
 package projects.bootcamp.domain.model;
 
-public class Bootcamp {
-    private int id_bootcamp;
-    private String name;
-    private String descrption;
+import java.util.List;
 
-    public Bootcamp(int id_bootcamp, String name, String descrption) {
-        this.id_bootcamp = id_bootcamp;
+public class Bootcamp {
+    private int idBootcamp;
+    private String name;
+    private String description;
+    private List<Capacity> capacityList;
+
+    public Bootcamp(int idBootcamp, String name, String description, List<Capacity> capacityList) {
+        this.idBootcamp = idBootcamp;
         this.name = name;
-        this.descrption = descrption;
+        this.description = description;
+        this.capacityList = capacityList;
     }
 
-    public int getId_bootcamp() {
-        return id_bootcamp;
+    public List<Capacity> getCapacityList() {
+        return capacityList;
+    }
+
+    public void setCapacityList(List<Capacity> capacityList) {
+        this.capacityList = capacityList;
+    }
+
+    public int getIdBootcamp() {
+        return idBootcamp;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDescrption() {
-        return descrption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setId_bootcamp(int id_bootcamp) {
-        this.id_bootcamp = id_bootcamp;
+    public void setIdBootcamp(int idBootcamp) {
+        this.idBootcamp = idBootcamp;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDescrption(String descrption) {
-        this.descrption = descrption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -30,4 +30,6 @@ public class CapacityEntity {
             inverseJoinColumns = @JoinColumn(name = "technology_id_technology")
     )
     private List<TechnologyEntity> technologyEntityList;
+    @ManyToMany(mappedBy = "capacityEntityList")
+    private List<BootcampEntity> bootcampEntities;
 }
