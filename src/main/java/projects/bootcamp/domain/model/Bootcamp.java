@@ -8,6 +8,9 @@ public class Bootcamp {
     private String description;
     private List<Capacity> capacityList;
 
+    public Bootcamp() {
+    }
+
     public Bootcamp(int idBootcamp, String name, String description, List<Capacity> capacityList) {
         this.idBootcamp = idBootcamp;
         this.name = name;

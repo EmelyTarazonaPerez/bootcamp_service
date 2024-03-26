@@ -40,7 +40,7 @@ class CapacityAdapterTest {
     @DisplayName("return a capacity if capacity saved correctly")
     void saveCapacityBD() {
         Capacity capacity = new Capacity(1, "Full Stack", "Any description", new ArrayList<>());
-        CapacityEntity capacityEntity = new CapacityEntity(1, "Full stack", "Any description", getTechnologyEntityList());
+        CapacityEntity capacityEntity = new CapacityEntity(1, "Full stack", "Any description", getTechnologyEntityList(), null);
         //When
         when(this.capacityEntityMapper.toCapacityEntity(capacity)).thenReturn(capacityEntity);
         when(this.capacityRepository.save(capacityEntity)).thenReturn(capacityEntity);

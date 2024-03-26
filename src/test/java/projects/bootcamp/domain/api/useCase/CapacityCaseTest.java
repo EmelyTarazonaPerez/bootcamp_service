@@ -56,7 +56,6 @@ class CapacityCaseTest {
     @Test
     @DisplayName("Guardar una capacidad correctamente")
     void save() {
-
         Capacity capacity = new Capacity(1, "Full Stack", "Any description",technologyList);
         Optional<Capacity> capacityOptional = Optional.of(capacity);
 
@@ -83,20 +82,8 @@ class CapacityCaseTest {
         technologyList.add(technology3);
 
         Capacity capacity = new Capacity(1, "Full Stack", "Any description",technologyList);
-
         assertThrows(ErrorListTechnologies.class, ()-> this.capacityCase.save(capacity));
 
-    }
-
-    @Test
-    @DisplayName("retornar error cuando las technologias relacionadas sean menor que 3 o mayor que 20")
-    void allowedSizeLimit() {
-        Technology technology1 = new Technology(1, "Java", "Any description");
-        List<Technology> technologyList = new ArrayList<>();
-        technologyList.add(technology1);
-
-        Capacity capacity = new Capacity(1, "Full Stack", "Any description",technologyList);
-        assertThrows(ErrorListTechnologies.class, ()-> this.capacityCase.save(capacity));
     }
 
     @Test

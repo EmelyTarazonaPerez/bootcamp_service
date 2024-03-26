@@ -15,12 +15,12 @@ import java.util.List;
 )
 public interface IBootcampEntityMapper {
     @Mappings(value = {
-            @Mapping(source = "idCapacity", target = "idCapacity"),
+            @Mapping(source = "idBootcamp", target = "idBootcamp"),
             @Mapping(source="name", target="name"),
             @Mapping(source = "description", target = "description"),
             @Mapping(source = "capacityEntityList", target = "capacityList")
     })
     Bootcamp toBootcamp (BootcampEntity bootcampEntity);
     @InheritInverseConfiguration
-    Bootcamp toBootcampEntity (Bootcamp capacity);
+    BootcampEntity toBootcampEntity (Bootcamp capacity);
 }

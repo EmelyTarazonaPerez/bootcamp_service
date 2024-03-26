@@ -29,8 +29,9 @@ public class BeanConfiguration {
     private final ITechnologyEntityMapper technologyEntityMapper;
     private final ICapacityRepository capacityRepository;
     private final ICapacityEntityMapper capacityEntityMapper;
-    private final IBootcampRepository bootcampRepository;
     private final IBootcampEntityMapper bootcampEntityMapper;
+    private final IBootcampRepository bootcampRepository;
+
     @Bean
     public ITechnologyPersistencePort technologyPersistencePort(){
         return new TechnologyAdapter(technologyRepository, technologyEntityMapper);
@@ -50,10 +51,10 @@ public class BeanConfiguration {
 
     @Bean
     public IBootcampPersistencePort bootcampPersistencePort () {
-        return new BootcampAdapter(bootcampEntityMapper, bootcampRepository);
+        return new BootcampAdapter(bootcampRepository, bootcampEntityMapper);
     }
     @Bean
     public IBootcampServicePort bootcampServicePort () {
-        return new BootcampCase(bootcampPersistencePort());
+        return  new BootcampCase(bootcampPersistencePort());
     }
 }

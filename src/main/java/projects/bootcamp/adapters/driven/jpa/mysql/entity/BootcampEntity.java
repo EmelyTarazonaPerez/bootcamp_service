@@ -22,7 +22,7 @@ public class BootcampEntity {
     @JoinTable(
             name="bootcamp_capacity",
             joinColumns = @JoinColumn(name = "bootcamp_id_bootcamp"),
-            inverseJoinColumns = @JoinColumn(name = "bootcamp_id_capacity")
+            inverseJoinColumns = @JoinColumn(name = "capacity_id_capacity")
     )
     private List<CapacityEntity> capacityEntityList;
 }

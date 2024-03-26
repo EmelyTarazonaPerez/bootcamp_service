@@ -14,8 +14,8 @@ import projects.bootcamp.domain.model.Technology;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class AddCapacityRequest {
     @Valid
     @NotNull(message = Constants.EMPTY_FIELD_EXCEPTION_MESSAGE)
@@ -26,5 +26,7 @@ public class AddCapacityRequest {
     @NotBlank(message = Constants.EMPTY_FIELD_EXCEPTION_MESSAGE)
     @Size(max = 50, message = Constants.LIMIT_STRING_NAME_TECHNOLOGY)
     private String description;
+    @Size(max = 20, message = "las techonogias asociadas deben ser maximo 20 tecnologias")
+    @Size(min = 3, message = "las techonogias asociadas deben ser minimo 3 tecnologias")
     private List<AddTechnologyRequest> addTechnologyRequestList;
 }
