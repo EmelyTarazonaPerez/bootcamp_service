@@ -11,9 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CapacityCase implements ICapacityServicePort {
-
     private final ICapacityPersistencePort capacityPersistencePort;
-
     public CapacityCase (ICapacityPersistencePort capacityPersistencePort){
         this.capacityPersistencePort = capacityPersistencePort;
     }

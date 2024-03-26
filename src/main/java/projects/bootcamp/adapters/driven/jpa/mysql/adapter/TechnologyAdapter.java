@@ -1,6 +1,7 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class TechnologyAdapter implements ITechnologyPersistencePort {
 
     private final ITechnologyRepository technologyRepository;
