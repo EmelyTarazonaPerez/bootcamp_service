@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class TechnologyAdapter implements ITechnologyPersistencePort {
 
     private final ITechnologyRepository technologyRepository;

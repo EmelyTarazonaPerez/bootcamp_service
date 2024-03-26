@@ -1,6 +1,7 @@
 package projects.bootcamp.contants;
 
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
+import projects.bootcamp.domain.model.Capacity;
 import projects.bootcamp.domain.model.Technology;
 
 import java.util.ArrayList;
@@ -17,6 +18,16 @@ public  class GetAssociatedTechList {
         technologyEntitylist.add(technology2);
         technologyEntitylist.add(technology3);
         return technologyEntitylist;
+    }
+
+    public static List<Capacity> getCapacityList (int inset) {
+        int x = 0;
+        List<Capacity> capacities = new ArrayList<>();
+        while (x < inset){
+            x++;
+            capacities.add(new Capacity());
+        }
+        return capacities;
     }
 
     public static List<Technology> getTechnologyList() {
