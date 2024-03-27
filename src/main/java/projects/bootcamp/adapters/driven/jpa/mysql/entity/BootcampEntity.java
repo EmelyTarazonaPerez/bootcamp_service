@@ -3,12 +3,14 @@ package projects.bootcamp.adapters.driven.jpa.mysql.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 @Entity
 @AllArgsConstructor
 @Table(name="bootcamp")
+@NoArgsConstructor
 @Getter
 @Setter
 public class BootcampEntity {

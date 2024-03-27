@@ -37,7 +37,9 @@ class BootcampCaseTest {
     @DisplayName("retornar un bootcamp cuando se guarde correctamente")
     void save() {
         when(this.bootcampPersistencePort.save(bootcamp)).thenReturn(bootcamp);
+
         final Bootcamp bootcampResult = bootcampCase.save(bootcamp);
+
         Assertions.assertEquals(1, bootcampResult.getIdBootcamp());
         Assertions.assertEquals("test", bootcampResult.getName());
     }

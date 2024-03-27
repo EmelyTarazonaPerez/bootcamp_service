@@ -29,7 +29,7 @@ public class CapacityEntity {
             joinColumns = @JoinColumn(name = "capacity_id_capacity"),
             inverseJoinColumns = @JoinColumn(name = "technology_id_technology")
     )
-    private List<TechnologyEntity> technologyEntityList;
+    private List<TechnologyEntity> technologyList;
     @ManyToMany(mappedBy = "capacityEntityList")
     private List<BootcampEntity> bootcampEntities;
 }

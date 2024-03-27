@@ -22,6 +22,6 @@ public class TechnologyEntity {
     private int idTechnology;
     private String name;
     private String description;
-    @ManyToMany(mappedBy = "technologyEntityList")
+    @ManyToMany(mappedBy = "technologyList")
     private List<CapacityEntity> capacityEntityList;
 }
