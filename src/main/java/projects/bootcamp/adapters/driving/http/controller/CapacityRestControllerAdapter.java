@@ -33,7 +33,7 @@ public class CapacityRestControllerAdapter {
     }
     @GetMapping("")
     public ResponseEntity<List<CapacityResponse>>
-    getAll( @PageableDefault( page = 0, size = 2, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable,
+    getAll( @PageableDefault( page = 0, size = 2, sort = {"name"}, direction = Sort.Direction.DESC) Pageable pageable,
             @RequestParam (defaultValue = "0") int byCant, String nameTech ) {
         return new ResponseEntity<>(capacityResponseMapper.toListCapacityResponse(
                 capacityServicePort.getAll(pageable, byCant, nameTech)), HttpStatus.OK);

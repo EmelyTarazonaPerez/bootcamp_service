@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import projects.bootcamp.adapters.driving.http.dto.request.technology.AddTechnologyRequest;
-import projects.bootcamp.adapters.driving.http.dto.response.TechnologyResponse;
+import projects.bootcamp.adapters.driving.http.dto.response.technology.TechnologyResponse;
 import projects.bootcamp.adapters.driving.http.mapper.technology.ITechnologyRequestMapper;
 import projects.bootcamp.adapters.driving.http.mapper.technology.ITechnologyResponseMapper;
 import projects.bootcamp.domain.api.ITechnologyServicePort;

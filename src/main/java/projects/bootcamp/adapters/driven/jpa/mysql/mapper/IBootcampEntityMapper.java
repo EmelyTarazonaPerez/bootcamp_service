@@ -21,6 +21,7 @@ public interface IBootcampEntityMapper {
             @Mapping(source = "capacityEntityList", target = "capacityList")
     })
     Bootcamp toBootcamp (BootcampEntity bootcampEntity);
+    List<Bootcamp> toBootcampList (Page<BootcampEntity> bootcampPage);
     @InheritInverseConfiguration
     BootcampEntity toBootcampEntity (Bootcamp capacity);
 }

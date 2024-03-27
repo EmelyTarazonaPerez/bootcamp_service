@@ -16,7 +16,7 @@ public interface ICapacityEntityMapper {
             @Mapping(source = "idCapacity", target = "idCapacity"),
             @Mapping(source="name", target="name"),
             @Mapping(source = "description", target = "description"),
-            @Mapping(source = "technologyEntityList", target = "technologyList")
+            @Mapping(source = "technologyList", target = "technologyList")
     })
     Capacity toCapacity (CapacityEntity capacityEntity);
     List<Capacity> toCapacityList (Page<CapacityEntity> capacityEntityList);
