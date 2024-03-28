@@ -79,7 +79,7 @@ class CapacityRestControllerAdapterTest {
 
     @Test
     @DisplayName("Deberia insertar correctamente una capacidad y retornar status 200")
-    void capacity() throws Exception {
+    void saveCapacity() throws Exception {
         String capacityJson = "{" +
                 "\"name\": \"Desarrollador junior prueba\", " +
                 "\"description\":\"Any description\"," +

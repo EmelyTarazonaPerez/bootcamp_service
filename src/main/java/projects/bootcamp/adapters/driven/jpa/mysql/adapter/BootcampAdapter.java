@@ -28,8 +28,8 @@ public class BootcampAdapter implements IBootcampPersistencePort {
     }
     @Override
     public List<Bootcamp> getAll(int size, int page,  boolean directionTechAssociated, boolean order) {
-       Pageable pageable = getOrdering(size, page, order);
-       List<Bootcamp> bootcamp = bootcampEntityMapper.toBootcampList(bootcampRepository.findAllOrderedByCapacity(pageable));
+       Pageable pageable = getOrdering(page, size, order);
+       List<Bootcamp> bootcamp = bootcampEntityMapper.toBootcampList(bootcampRepository.findAll(pageable));
        if(directionTechAssociated){
           getOrderByCantTech(bootcamp, order);
        }

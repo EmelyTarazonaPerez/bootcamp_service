@@ -64,7 +64,7 @@ class CapacityAdapterTest {
         List<Capacity> capacities = new ArrayList<>();
         when(capacityEntityMapper.toCapacityList(capacityRepository.findAll(pegeableMock))).thenReturn(capacities);
         final List<Capacity> capacityList = capacityAdapter.getAll(pegeableMock);
-         assertNotNull(capacityList);
+        assertNotNull(capacityList);
     }
 
 }

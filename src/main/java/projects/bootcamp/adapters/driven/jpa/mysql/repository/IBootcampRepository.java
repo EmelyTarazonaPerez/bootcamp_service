@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface IBootcampRepository extends JpaRepository<BootcampEntity, Integer> {
-    @Query("SELECT e FROM BootcampEntity e")
-    Page<BootcampEntity> findAllOrderedByCapacity(Pageable pageable);
+
 }

@@ -121,13 +121,14 @@ class CapacityCaseTest {
     void getAll() {
         Capacity capacity = new Capacity(1, "Full Stack", "Any description",technologyList);
         Capacity capacity2 = new Capacity(3, "Rollerblades backend", "Any description",technologyList2);
-
         List<Capacity> capacities = new ArrayList<>();
         capacities.add(capacity);
         capacities.add(capacity2);
 
         when(capacityPersistencePort.getAll(pegeableMock)).thenReturn(capacities);
+
         List<Capacity> capacityResponse = capacityCase.getAll(pegeableMock, 0, null);
+
         assertEquals(capacities, capacityResponse);
     }
 }
