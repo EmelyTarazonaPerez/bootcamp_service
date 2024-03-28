@@ -1,6 +1,10 @@
 package projects.bootcamp.contants;
 
+import projects.bootcamp.adapters.driven.jpa.mysql.entity.BootcampEntity;
+import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
+import projects.bootcamp.adapters.driving.http.dto.response.bootcamp.AssociatedCapacity;
+import projects.bootcamp.adapters.driving.http.dto.response.capacity.CapacityResponse;
 import projects.bootcamp.domain.model.Capacity;
 import projects.bootcamp.domain.model.Technology;
 
@@ -29,6 +33,24 @@ public  class GetAssociatedTechList {
         }
         return capacities;
     }
+    public static List<CapacityEntity> getCapacityEntityList (int inset) {
+        int x = 0;
+        List<CapacityEntity> capacityEntities = new ArrayList<>();
+        while (x < inset){
+            x++;
+            capacityEntities.add(new CapacityEntity());
+        }
+        return capacityEntities;
+    }
+    public static List<AssociatedCapacity> getCapacityResponseList (int inset) {
+        int x = 0;
+        List<AssociatedCapacity> capacityResponses = new ArrayList<>();
+        while (x < inset){
+            x++;
+            capacityResponses.add(new AssociatedCapacity(x,"Bootcam" + x ,  null));
+        }
+        return capacityResponses;
+    }
 
     public static List<Technology> getTechnologyList() {
         Technology technology1 = new Technology(1, "Java1", "Any description");
@@ -41,5 +63,8 @@ public  class GetAssociatedTechList {
         technologyList.add(technology3);
         return technologyList;
     }
+
+
+
 
 }

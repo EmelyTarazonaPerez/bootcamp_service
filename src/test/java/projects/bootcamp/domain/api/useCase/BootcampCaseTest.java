@@ -58,4 +58,16 @@ class BootcampCaseTest {
         bootcamp = new Bootcamp(1, "test", "any", getCapacityList(5));
         assertThrows(ErrorListTechnologies.class, ()-> this.bootcampCase.save(bootcamp));
     }
+
+    @Test
+    @DisplayName("rotornar una lista de bootcamp si se realiza el metodo correctamente")
+    void getAll() {
+        List<Bootcamp> bootcampList = new  ArrayList<>();
+        bootcampList.add(new Bootcamp(1, "test", "any", getCapacityList(5)));
+
+        when(bootcampPersistencePort.getAll(10,0,false, false)).thenReturn(bootcampList);
+
+        final List<Bootcamp> result = bootcampCase.getAll(10,0, false, false);
+        Assertions.assertEquals(bootcampList, result);
+    }
 }

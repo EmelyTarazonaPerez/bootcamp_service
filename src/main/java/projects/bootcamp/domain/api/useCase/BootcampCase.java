@@ -23,11 +23,8 @@ public class BootcampCase implements IBootcampServicePort {
 
     @Override
     public List<Bootcamp> getAll(int size, int page, boolean directionTechAssociated, boolean order) {
-         List<Bootcamp> bootcamps = bootcampPersistencePort.getAll(size, page, directionTechAssociated, order);
-        return bootcamps;
-
+        return  bootcampPersistencePort.getAll(size, page, directionTechAssociated, order);
     }
-
     public boolean validInsertNumbAssociated (int size, int min, int max) {
         return size < min || size > max;
     }
