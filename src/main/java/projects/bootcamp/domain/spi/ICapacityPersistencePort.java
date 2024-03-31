@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ICapacityPersistencePort {
     Capacity save (Capacity capacity);
-    List<Capacity> getAll (Pageable pageable);
+    List<Capacity> getAll(int size, int page, boolean directionTechAssociated, boolean order);
 }

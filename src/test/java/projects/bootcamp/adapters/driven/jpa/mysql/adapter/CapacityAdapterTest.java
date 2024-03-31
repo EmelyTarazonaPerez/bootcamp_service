@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Pageable;
+import projects.bootcamp.adapters.driven.jpa.mysql.adapter.CapacityAdapter;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
@@ -59,11 +60,12 @@ class CapacityAdapterTest {
         });
     }
     @Test
-    @DisplayName("Guardar retornar lista de capacidades en la base de datos")
+    @DisplayName("Retornar lista de capacidades en la base de datos")
     void getAll() {
         List<Capacity> capacities = new ArrayList<>();
-        when(capacityEntityMapper.toCapacityList(capacityRepository.findAll(pegeableMock))).thenReturn(capacities);
-        final List<Capacity> capacityList = capacityAdapter.getAll(pegeableMock);
+        when(capacityEntityMapper.toCapacityList(capacityRepository.findAll(any(Pageable.class)))).thenReturn(capacities);
+
+        final List<Capacity> capacityList = capacityAdapter.getAll(0, 10,false,false);
         assertNotNull(capacityList);
     }
 

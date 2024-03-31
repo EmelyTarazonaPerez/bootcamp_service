@@ -96,8 +96,8 @@ class CapacityCaseTest {
         capacities.add(capacity);
         capacities.add(capacity2);
 
-        when(capacityPersistencePort.getAll(pegeableMock)).thenReturn(capacities);
-        List<Capacity> capacityResponse = capacityCase.getAll(pegeableMock, 0, "Java");
+        when(capacityPersistencePort.getAll(10, 0,false,false)).thenReturn(capacities);
+        List<Capacity> capacityResponse = capacityCase.getAll(10, 0,false,false, 0, "Java");
         assertEquals(capacities, capacityResponse);
     }
 
@@ -111,8 +111,8 @@ class CapacityCaseTest {
         capacities.add(capacity);
         capacities.add(capacity2);
 
-        when(capacityPersistencePort.getAll(pegeableMock)).thenReturn(capacities);
-        List<Capacity> capacityResponse = capacityCase.getAll(pegeableMock, 4, "Java");
+        when(capacityPersistencePort.getAll(10, 0,false,false)).thenReturn(capacities);
+        List<Capacity> capacityResponse = capacityCase.getAll(10, 0,false,false, 4, "Java");
         assertEquals(capacity2, capacityResponse.get(0));
     }
 
@@ -125,9 +125,9 @@ class CapacityCaseTest {
         capacities.add(capacity);
         capacities.add(capacity2);
 
-        when(capacityPersistencePort.getAll(pegeableMock)).thenReturn(capacities);
+        when(capacityPersistencePort.getAll(10, 0,false,false)).thenReturn(capacities);
 
-        List<Capacity> capacityResponse = capacityCase.getAll(pegeableMock, 0, null);
+        List<Capacity> capacityResponse = capacityCase.getAll(10, 0,false,false, 0, null);
 
         assertEquals(capacities, capacityResponse);
     }

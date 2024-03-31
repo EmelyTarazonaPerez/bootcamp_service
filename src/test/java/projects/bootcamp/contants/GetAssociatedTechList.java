@@ -5,6 +5,7 @@ import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import projects.bootcamp.adapters.driving.http.dto.response.bootcamp.AssociatedCapacity;
 import projects.bootcamp.adapters.driving.http.dto.response.capacity.CapacityResponse;
+import projects.bootcamp.adapters.driving.http.dto.response.technology.TechnologyResponse;
 import projects.bootcamp.domain.model.Capacity;
 import projects.bootcamp.domain.model.Technology;
 
@@ -58,6 +59,18 @@ public  class GetAssociatedTechList {
         Technology technology3 = new Technology(3, "Java3", "Any description");
 
         List<Technology> technologyList = new ArrayList<>();
+        technologyList.add(technology1);
+        technologyList.add(technology2);
+        technologyList.add(technology3);
+        return technologyList;
+    }
+
+    public static List<TechnologyResponse> getTechnologyResponseList () {
+        TechnologyResponse technology1 = new TechnologyResponse(1, "Java1", "Any description");
+        TechnologyResponse technology2 = new TechnologyResponse(2, "Java2", "Any description");
+        TechnologyResponse technology3 = new TechnologyResponse(3, "Java3", "Any description");
+
+        List<TechnologyResponse> technologyList = new ArrayList<>();
         technologyList.add(technology1);
         technologyList.add(technology2);
         technologyList.add(technology3);

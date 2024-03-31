@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface ITechnologyPersistencePort {
     Optional<Technology> saveTechnology(Technology technology);
-    List<Technology> getAll(Pageable pageable);
+    List<Technology> getAll(int page, int size, boolean sort);
 
 }

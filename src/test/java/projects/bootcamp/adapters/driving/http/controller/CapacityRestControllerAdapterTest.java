@@ -57,22 +57,26 @@ class CapacityRestControllerAdapterTest {
     @Test
     @DisplayName("Deberia retornar lista de las capacidades con el nombre Java")
     void getAll() throws Exception {
-        List<AssociatedTechnology> associatedTechnologies = new ArrayList<> ();
+        List<AssociatedTechnology> associatedTechnologies = new ArrayList<>();
 
-        associatedTechnologies.add( new AssociatedTechnology(1, "java"));
-        associatedTechnologies.add( new AssociatedTechnology(2, "Angular"));
-        associatedTechnologies.add( new AssociatedTechnology(3, "JUnit"));
+        associatedTechnologies.add(new AssociatedTechnology(1, "java"));
+        associatedTechnologies.add(new AssociatedTechnology(2, "Angular"));
+        associatedTechnologies.add(new AssociatedTechnology(3, "JUnit"));
 
         List<CapacityResponse> capacityResponses =
                 Collections.singletonList(new CapacityResponse(1, "full stack", "any", associatedTechnologies));
 
         when(capacityResponsMapper.toListCapacityResponse(
-                capacityServicePort.getAll(pegeableMock,0,"Java"))).thenReturn(capacityResponses);
+                capacityServicePort.getAll(10, 0, false, false, 0, "Java"))).thenReturn(capacityResponses);
 
         // Realizar solicitud GET
         mockMcv.perform(MockMvcRequestBuilders.get("/capacity")
-                        .param("byCant", "0")
-                        .param("nameTech", "Java")).andExpect(status().isOk());
+                .param("page", "0")
+                .param("size", "10")
+                .param("directionTechAssociated", "false")
+                .param("order", "false")
+                .param("byCant", "0")
+                .param("nameTech", "Java")).andExpect(status().isOk());
 
     }
 

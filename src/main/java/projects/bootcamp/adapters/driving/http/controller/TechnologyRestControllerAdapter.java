@@ -28,16 +28,18 @@ public class TechnologyRestControllerAdapter {
     private final ITechnologyResponseMapper technologyResponseMapper;
 
     @PostMapping("/save")
-    public ResponseEntity<Optional<Technology>> technology (@Valid @RequestBody AddTechnologyRequest request){
+    public ResponseEntity<Optional<Technology>> save (@Valid @RequestBody AddTechnologyRequest request){
         return new ResponseEntity<>( technologyPersistencePort.createTechnology(
                 technologyRequestMapper.addRequestToTechnology(request)),HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<TechnologyResponse>> getAll (@PageableDefault(
-        page=0, size = 2, sort = {"name"}, direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<List<TechnologyResponse>> getAll (
+            @RequestParam (defaultValue = "0") int page,
+            @RequestParam (defaultValue = "10") int size,
+            @RequestParam (defaultValue = "false") boolean sort){
         return new ResponseEntity<>(technologyResponseMapper.toListTechnologyResponse(
-                technologyPersistencePort.getAll(pageable)), HttpStatus.OK);
+                technologyPersistencePort.getAll(page, size, sort)), HttpStatus.OK);
     }
 
 }

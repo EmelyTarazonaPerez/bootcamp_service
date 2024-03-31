@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import projects.bootcamp.adapters.driven.jpa.mysql.adapter.BootcampAdapter;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.BootcampEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.IBootcampEntityMapper;
 import projects.bootcamp.adapters.driven.jpa.mysql.repository.IBootcampRepository;
