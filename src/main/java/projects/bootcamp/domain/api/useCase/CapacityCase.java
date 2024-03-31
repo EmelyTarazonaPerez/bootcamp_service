@@ -24,30 +24,30 @@ public class CapacityCase implements ICapacityServicePort {
         }
         return capacityPersistencePort.save(capacity);
     }
+
     @Override
-    public List<Capacity> getAll(Pageable pageable, int byCant, String name) {
-        List<Capacity> capacityList = capacityPersistencePort.getAll(pageable);
+    public List<Capacity> getAll(int size, int page, boolean directionTechAssociated, boolean order, int byCant, String name) {
+        List<Capacity> capacityList = capacityPersistencePort.getAll(size, page , directionTechAssociated, order);
         return techAssociated(capacityList, name, byCant);
     }
 
-    private boolean thereTechnologyEquals (List<Technology> technologiesList , Set<Technology> technologieSet ) {
-        return technologieSet.size() < technologiesList.size();
-    }
-
-    private List<Capacity> capacityListByCantTechnology (List<Capacity> capacityList, int byCant) {
+    private List<Capacity> filterByTech (List<Capacity> capacityList, int byCant) {
         return capacityList.stream().filter(capacity ->  {
             if (byCant == 0) return true;
             else return capacity.getTechnologyList().size() == byCant;
         } ).toList();
     }
     private List<Capacity> techAssociated (List<Capacity> capacityList, String name, int byCant) {
-        if (name == null) return capacityListByCantTechnology(capacityList, byCant);
-        return capacityListByCantTechnology(capacityList, byCant).stream()
+        if (name == null) return filterByTech(capacityList, byCant);
+        return filterByTech(capacityList, byCant).stream()
                 .filter(capacity -> capacity.getTechnologyList().stream()
                         .anyMatch(technology -> technology.getName().equals(name))).toList();
     }
     private Set<Technology> convertirListToSet (Capacity capacity) {
         List<Technology> listTechnology = capacity.getTechnologyList();
         return new HashSet<>(listTechnology);
+    }
+    private boolean thereTechnologyEquals (List<Technology> technologiesList , Set<Technology> technologieSet ) {
+        return technologieSet.size() < technologiesList.size();
     }
 }

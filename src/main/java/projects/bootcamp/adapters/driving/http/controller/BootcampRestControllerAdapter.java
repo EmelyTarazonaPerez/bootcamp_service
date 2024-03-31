@@ -33,9 +33,13 @@ public class BootcampRestControllerAdapter {
         return new ResponseEntity<>(bootcampServicePort.save(
                 bootcampMapperRequest.toBootcamp(request)), HttpStatus.OK);
     }
+
     @GetMapping("")
-    public ResponseEntity<List<BootcampResponse>> getAll(boolean order, @RequestParam (defaultValue = "0")  int page, @RequestParam
-            (defaultValue = "10") int size, @RequestParam (defaultValue = "false")  boolean directionTechAssociated ) {
-        return new ResponseEntity<>( bootcampMapperRespons.toBootcampResponseList(bootcampServicePort.getAll(page, size, directionTechAssociated, order)), HttpStatus.OK);
+    public ResponseEntity<List<BootcampResponse>> getAll(
+            @RequestParam(defaultValue = "false") boolean order,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "false") boolean directionTechAssociated) {
+        return new ResponseEntity<>(bootcampMapperRespons.toBootcampResponseList(bootcampServicePort.getAll(page, size, directionTechAssociated, order)), HttpStatus.OK);
     }
 }

@@ -16,6 +16,7 @@ import projects.bootcamp.domain.spi.IBootcampPersistencePort;
 import java.util.List;
 
 import static projects.bootcamp.adapters.driven.jpa.mysql.DataOrdering.getOrdering;
+import static projects.bootcamp.adapters.driven.jpa.mysql.OrderByTech.getOrderByCantCapacity;
 import static projects.bootcamp.adapters.driven.jpa.mysql.OrderByTech.getOrderByCantTech;
 
 @AllArgsConstructor
@@ -27,11 +28,11 @@ public class BootcampAdapter implements IBootcampPersistencePort {
         return bootcampEntityMapper.toBootcamp(bootcampRepository.save(bootcampEntityMapper.toBootcampEntity(bootcamp)));
     }
     @Override
-    public List<Bootcamp> getAll(int size, int page,  boolean directionTechAssociated, boolean order) {
+    public List<Bootcamp> getAll(int page, int size,  boolean directionTechAssociated, boolean order) {
        Pageable pageable = getOrdering(page, size, order);
        List<Bootcamp> bootcamp = bootcampEntityMapper.toBootcampList(bootcampRepository.findAll(pageable));
        if(directionTechAssociated){
-          getOrderByCantTech(bootcamp, order);
+           getOrderByCantCapacity(bootcamp, order);
        }
        return bootcamp;
    }

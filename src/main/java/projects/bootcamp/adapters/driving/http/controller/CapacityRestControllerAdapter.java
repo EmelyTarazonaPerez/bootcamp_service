@@ -32,10 +32,12 @@ public class CapacityRestControllerAdapter {
                 capacityRequestMapper.addRequestToCapacity(request)), HttpStatus.OK);
     }
     @GetMapping("")
-    public ResponseEntity<List<CapacityResponse>>
-    getAll( @PageableDefault( page = 0, size = 2, sort = {"name"}, direction = Sort.Direction.DESC) Pageable pageable,
-            @RequestParam (defaultValue = "0") int byCant, String nameTech ) {
+    public ResponseEntity<List<CapacityResponse>> getAll( boolean order, String nameTech,
+            @RequestParam (defaultValue = "0")  int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam (defaultValue = "false")  boolean directionTechAssociated,
+            @RequestParam (defaultValue = "0") int byCant) {
         return new ResponseEntity<>(capacityResponseMapper.toListCapacityResponse(
-                capacityServicePort.getAll(pageable, byCant, nameTech)), HttpStatus.OK);
+                capacityServicePort.getAll(page, size, directionTechAssociated, order, byCant, nameTech)), HttpStatus.OK);
     }
 }

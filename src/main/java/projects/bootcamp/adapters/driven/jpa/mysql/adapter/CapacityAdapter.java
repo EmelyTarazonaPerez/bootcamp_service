@@ -9,15 +9,18 @@ import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.ICapacityEntityMapper;
 import projects.bootcamp.adapters.driven.jpa.mysql.repository.ICapacityRepository;
+import projects.bootcamp.domain.model.Bootcamp;
 import projects.bootcamp.domain.model.Capacity;
 import projects.bootcamp.domain.spi.ICapacityPersistencePort;
 
 import java.util.List;
 import java.util.Optional;
 
+import static projects.bootcamp.adapters.driven.jpa.mysql.DataOrdering.getOrdering;
+import static projects.bootcamp.adapters.driven.jpa.mysql.OrderByTech.getOrderByCantTech;
+
 @Service
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class CapacityAdapter implements ICapacityPersistencePort {
 
     private ICapacityRepository capacityRepository;
@@ -33,8 +36,13 @@ public class CapacityAdapter implements ICapacityPersistencePort {
         }
     }
     @Override
-    public List<Capacity> getAll(Pageable pageable) {
-        return capacityEntityMapper.toCapacityList(capacityRepository.findAll(pageable));
+    public List<Capacity> getAll(int page, int size, boolean directionTechAssociated, boolean order) {
+        Pageable pageable = getOrdering(page, size, order);
+        List<Capacity> capacities = capacityEntityMapper.toCapacityList(capacityRepository.findAll(pageable));
+        if(directionTechAssociated){
+           getOrderByCantTech(capacities, order);
+        }
+        return capacities;
     }
 
 }

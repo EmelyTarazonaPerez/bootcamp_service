@@ -46,12 +46,9 @@ class BootcampRestControllerAdapterTest {
     private IBootcampMapperRespons bootcampMapperRespons;
     @InjectMocks
     private BootcampRestControllerAdapter bootcampRestControllerAdapter;
-
-    private Bootcamp bootcamp;
     private MockMvc mockMcv;
     @BeforeEach
     void setUp() {
-        bootcamp = new Bootcamp(1, "test", "any", getCapacityList(3));
         mockMcv = MockMvcBuilders.standaloneSetup(bootcampRestControllerAdapter)
                 .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
                 .build();

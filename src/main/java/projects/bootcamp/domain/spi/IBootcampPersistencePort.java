@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IBootcampPersistencePort {
     Bootcamp save(Bootcamp bootcamp);
-    List<Bootcamp> getAll(int size, int page, boolean directionTechAssociated, boolean order);
+    List<Bootcamp> getAll(int page, int size, boolean directionTechAssociated, boolean order);
 }
