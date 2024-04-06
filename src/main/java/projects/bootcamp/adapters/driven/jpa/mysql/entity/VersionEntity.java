@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
@@ -22,10 +21,13 @@ public class VersionEntity {
     private int idVersion;
     @Column(name = "start_date")
     private LocalDate startDate;
+    @Column(name = "end_date")
+    private LocalDate endDate;
     @Column(name = "max_capacity")
     private int cupMaxParticipant;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "bootcamp_id_bootcamp")
-    private List<BootcampEntity> bootcampEntityList;
+    private BootcampEntity bootcamp;
+    private String version;
 
 }

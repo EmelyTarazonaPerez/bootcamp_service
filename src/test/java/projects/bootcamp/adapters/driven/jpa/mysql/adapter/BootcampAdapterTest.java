@@ -43,7 +43,7 @@ class BootcampAdapterTest {
         when(bootcampEntityMapper.toBootcampList(bootcampRepository.findAll(any(Pageable.class))))
                 .thenReturn(bootcamp);
 
-        List<Bootcamp> result = bootcampAdapter.getAll(10, 0, false, false);
+        List<Bootcamp> result = bootcampAdapter.getAll(0, 10, false, false);
 
         Assertions.assertEquals(bootcamp, result);
         assertNotNull(result);

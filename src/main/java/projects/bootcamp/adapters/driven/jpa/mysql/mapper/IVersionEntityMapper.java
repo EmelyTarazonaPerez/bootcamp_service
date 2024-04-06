@@ -12,8 +12,10 @@ public interface IVersionEntityMapper {
     @Mappings(value = {
             @Mapping(source = "idVersion", target = "idVersion"),
             @Mapping(source = "startDate", target = "startDate"),
+            @Mapping(source = "endDate", target = "endDate"),
             @Mapping(source = "cupMaxParticipant", target = "cupMaxParticipant"),
-            @Mapping(source = "bootcampEntityList", target = "bootcampList")
+            @Mapping(source = "bootcamp", target = "bootcamp"),
+            @Mapping(source = "version", target = "name")
     })
     Version toVersion (VersionEntity versionEntity);
 

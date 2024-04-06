@@ -1,6 +1,5 @@
 package projects.bootcamp.domain.api;
 
-import projects.bootcamp.domain.model.Bootcamp;
 import projects.bootcamp.domain.model.Version;
 
 import java.util.List;

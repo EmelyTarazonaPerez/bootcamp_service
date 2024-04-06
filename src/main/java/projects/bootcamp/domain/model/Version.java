@@ -1,29 +1,32 @@
 package projects.bootcamp.domain.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Version {
     private int idVersion;
     private LocalDate startDate;
     private LocalDate endDate;
     private int cupMaxParticipant;
-    private List<Bootcamp> bootcampList;
+    private Bootcamp bootcamp;
+    private String name;
 
-    public Version(int idVersion, LocalDate startDate, LocalDate endDate, int cupMaxParticipant, List<Bootcamp> bootcampList) {
+    public Version(int idVersion, LocalDate startDate, LocalDate endDate, int cupMaxParticipant, Bootcamp bootcamp, String name) {
         this.idVersion = idVersion;
         this.startDate = startDate;
         this.endDate = endDate;
         this.cupMaxParticipant = cupMaxParticipant;
-        this.bootcampList = bootcampList;
+        this.bootcamp = bootcamp;
+        this.name = name;
     }
 
     public int getIdVersion() {
         return idVersion;
     }
+
     public void setIdVersion(int idVersion) {
         this.idVersion = idVersion;
     }
+
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -48,11 +51,19 @@ public class Version {
         this.cupMaxParticipant = cupMaxParticipant;
     }
 
-    public List<Bootcamp> getBootcampList() {
-        return bootcampList;
+    public String getName() {
+        return name;
     }
 
-    public void setBootcampList(List<Bootcamp> bootcampList) {
-        this.bootcampList = bootcampList;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Bootcamp getBootcamp() {
+        return bootcamp;
+    }
+
+    public void setBootcamp(Bootcamp bootcamp) {
+        this.bootcamp = bootcamp;
     }
 }
