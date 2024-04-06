@@ -1,6 +1,5 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
-import jakarta.validation.constraints.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,10 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import projects.bootcamp.adapters.driven.jpa.mysql.adapter.TechnologyAdapter;
-import projects.bootcamp.adapters.driven.jpa.mysql.entity.CapacityEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.ITechnologyEntityMapper;

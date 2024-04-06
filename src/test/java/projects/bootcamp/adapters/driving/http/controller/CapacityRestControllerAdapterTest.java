@@ -12,14 +12,12 @@ import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import projects.bootcamp.adapters.driven.jpa.mysql.mapper.ICapacityEntityMapper;
 import projects.bootcamp.adapters.driving.http.dto.request.capacity.AddCapacityRequest;
 import projects.bootcamp.adapters.driving.http.dto.response.capacity.AssociatedTechnology;
 import projects.bootcamp.adapters.driving.http.dto.response.capacity.CapacityResponse;
 import projects.bootcamp.adapters.driving.http.mapper.capacity.ICapacityRequestMapper;
-import projects.bootcamp.adapters.driving.http.mapper.capacity.ICapacityResponsMapper;
+import projects.bootcamp.adapters.driving.http.mapper.capacity.ICapacityResponseMapper;
 import projects.bootcamp.domain.api.ICapacityServicePort;
 import projects.bootcamp.domain.model.Capacity;
 
@@ -40,7 +38,7 @@ class CapacityRestControllerAdapterTest {
     @Mock
     private ICapacityRequestMapper capacityRequestMapper;
     @Mock
-    private ICapacityResponsMapper capacityResponsMapper;
+    private ICapacityResponseMapper capacityResponsMapper;
     @InjectMocks
     private CapacityRestControllerAdapter capacityRestControllerAdapter;
     @Mock
@@ -103,7 +101,7 @@ class CapacityRestControllerAdapterTest {
     }
 
     @Test
-    @DisplayName("Deberia no insertar una capacidad y retornar status 404")
+    @DisplayName("Deberia no guardar una capacidad y retornar status 404")
     void dontSaveCapacityWhenEmptyPropierty() throws Exception {
         String capacityJson = "{" +
                 "\"name\": null, " +

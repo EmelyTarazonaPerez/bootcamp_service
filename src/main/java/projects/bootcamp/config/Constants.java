@@ -11,6 +11,7 @@ public class Constants {
     public static final Long SOLD_OUT_VALUE = 0L;
 
     public static final String LIMIT_STRING_NAME_TECHNOLOGY = "technology can only have 50 characters";
+    public static final String LIMIT_STRING_NAME_VERSION = "name can only have 50 characters";
     public static final String LIMIT_STRING_DESCRIPTION_TECHNOLOGY = "Description can only have 90 characters";
 
     private Constants(){

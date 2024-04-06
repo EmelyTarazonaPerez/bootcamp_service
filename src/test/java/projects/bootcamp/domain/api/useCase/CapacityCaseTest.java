@@ -32,7 +32,6 @@ class CapacityCaseTest {
     @InjectMocks
     private CapacityCase capacityCase;
 
-    //atributos
     private static List<Technology> technologyList = new ArrayList<>();
     private static List<Technology> technologyList2 = new ArrayList<>();
 

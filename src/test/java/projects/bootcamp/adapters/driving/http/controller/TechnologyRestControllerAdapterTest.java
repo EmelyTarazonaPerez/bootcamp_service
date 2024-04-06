@@ -33,8 +33,7 @@ class TechnologyRestControllerAdapterTest {
     private ITechnologyResponseMapper technologyResponseMapper;
     @InjectMocks
     private TechnologyRestControllerAdapter technologyRestControllerAdapter;
-    @Mock
-    private Pageable pageable;
+
     private MockMvc mockMcv;
     @BeforeEach
     void setUp() {

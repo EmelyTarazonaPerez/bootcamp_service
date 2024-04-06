@@ -37,7 +37,6 @@ import static projects.bootcamp.contants.GetAssociatedTechList.getCapacityRespon
 
 @ExtendWith(MockitoExtension.class)
 class BootcampRestControllerAdapterTest {
-
     @Mock
     private IBootcampServicePort bootcampServicePort;
     @Mock
