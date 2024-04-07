@@ -1,21 +1,24 @@
-package projects.bootcamp.adapters.driven.jpa.mysql;
+package projects.bootcamp.adapters.driven.jpa.mysql.utils;
 
+import lombok.AllArgsConstructor;
 import projects.bootcamp.domain.model.Bootcamp;
 import projects.bootcamp.domain.model.Capacity;
 
 import java.util.List;
 
 public class OrderByTech {
-
-    public static List<Bootcamp>  getOrderByCantCapacity (List<Bootcamp> bootcamps, boolean direction) {
-        bootcamps.sort((objeto1, objeto2) -> {
+    private OrderByTech() {
+        throw new IllegalStateException("Utility class");
+    }
+    public static List<Bootcamp>  getOrderByCantCapacity (List<Bootcamp> bootcamp, boolean direction) {
+        bootcamp.sort((objeto1, objeto2) -> {
             if (direction) {
                 return Integer.compare(objeto1.getCapacityList().size(), objeto2.getCapacityList().size());
             } else {
                 return Integer.compare(objeto2.getCapacityList().size(), objeto1.getCapacityList().size());
             }
         });
-        return bootcamps;
+        return bootcamp;
     }
 
     public static List<Capacity>  getOrderByCantTech (List<Capacity> capacities, boolean direction) {

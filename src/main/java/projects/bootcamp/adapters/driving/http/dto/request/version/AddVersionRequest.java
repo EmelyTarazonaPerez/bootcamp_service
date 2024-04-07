@@ -1,6 +1,5 @@
 package projects.bootcamp.adapters.driving.http.dto.request.version;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import projects.bootcamp.config.Constants;
 import projects.bootcamp.domain.model.Bootcamp;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @AllArgsConstructor
 @Getter

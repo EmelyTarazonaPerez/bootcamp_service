@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IVersionServicePort {
     Version save(Version version);
-    List<Version> getAll(int page, int size, boolean directionTechAssociated, boolean order);
+    List<Version> getAll(int page, int size, String orderByProperty, boolean direction, int idBootcamp);
 }

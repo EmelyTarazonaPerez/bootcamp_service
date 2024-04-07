@@ -1,13 +1,7 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import projects.bootcamp.adapters.driven.jpa.mysql.DataOrdering;
-import projects.bootcamp.adapters.driven.jpa.mysql.entity.BootcampEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.IBootcampEntityMapper;
 import projects.bootcamp.adapters.driven.jpa.mysql.repository.IBootcampRepository;
 import projects.bootcamp.domain.model.Bootcamp;
@@ -15,9 +9,8 @@ import projects.bootcamp.domain.spi.IBootcampPersistencePort;
 
 import java.util.List;
 
-import static projects.bootcamp.adapters.driven.jpa.mysql.DataOrdering.getOrdering;
-import static projects.bootcamp.adapters.driven.jpa.mysql.OrderByTech.getOrderByCantCapacity;
-import static projects.bootcamp.adapters.driven.jpa.mysql.OrderByTech.getOrderByCantTech;
+import static projects.bootcamp.adapters.driven.jpa.mysql.utils.DataOrdering.getOrdering;
+import static projects.bootcamp.adapters.driven.jpa.mysql.utils.OrderByTech.getOrderByCantCapacity;
 
 @AllArgsConstructor
 public class BootcampAdapter implements IBootcampPersistencePort {
@@ -29,7 +22,7 @@ public class BootcampAdapter implements IBootcampPersistencePort {
     }
     @Override
     public List<Bootcamp> getAll(int page, int size,  boolean directionTechAssociated, boolean order) {
-       Pageable pageable = getOrdering(page, size, order);
+       Pageable pageable = getOrdering(page, size, order, "name");
        List<Bootcamp> bootcamp = bootcampEntityMapper.toBootcampList(bootcampRepository.findAll(pageable));
        if(directionTechAssociated){
            getOrderByCantCapacity(bootcamp, order);
