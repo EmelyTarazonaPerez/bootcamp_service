@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface IVersionPersistencePort {
     Version save(Version version);
-    List<Version> getAll(int page, int size, boolean sort);
+    List<Version> getAll(int page, int size, String orderByProperty, boolean direction);
 }

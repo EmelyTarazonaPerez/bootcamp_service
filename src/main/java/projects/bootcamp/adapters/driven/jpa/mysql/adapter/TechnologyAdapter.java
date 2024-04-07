@@ -1,7 +1,6 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
@@ -14,7 +13,7 @@ import projects.bootcamp.domain.spi.ITechnologyPersistencePort;
 import java.util.List;
 import java.util.Optional;
 
-import static projects.bootcamp.adapters.driven.jpa.mysql.DataOrdering.getOrdering;
+import static projects.bootcamp.adapters.driven.jpa.mysql.utils.DataOrdering.getOrdering;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +35,7 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     }
     @Override
     public List<Technology> getAll(int page, int size, boolean sort) {
-        Pageable pageable = getOrdering(page, size, sort);
+        Pageable pageable = getOrdering(page, size, sort, "name");
         return technologyEntityMapper.toTechnologiesModel(technologyRepository.findAll(pageable));
 
     }

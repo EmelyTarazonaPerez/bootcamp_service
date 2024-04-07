@@ -1,7 +1,9 @@
 package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import projects.bootcamp.adapters.driven.jpa.mysql.utils.DataOrdering;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.VersionEntity;
 import projects.bootcamp.adapters.driven.jpa.mysql.exception.ProductAlreadyExistsException;
 import projects.bootcamp.adapters.driven.jpa.mysql.mapper.IVersionEntityMapper;
@@ -10,7 +12,6 @@ import projects.bootcamp.domain.model.Version;
 import projects.bootcamp.domain.spi.IVersionPersistencePort;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,9 +29,9 @@ public class VersionAdapter implements IVersionPersistencePort {
             throw new ProductAlreadyExistsException("Error");
         }
     }
-
     @Override
-    public List<Version> getAll(int page, int size, boolean sort) {
-        return null;
+    public List<Version> getAll(int page, int size, String orderByProperty, boolean direction) {
+        Pageable pageable = DataOrdering.getOrdering(page, size, direction, orderByProperty);
+        return versionEntityMapper.toListVersion(versionRepository.findAll(pageable));
     }
 }

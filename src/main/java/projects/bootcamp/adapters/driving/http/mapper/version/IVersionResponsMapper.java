@@ -26,4 +26,5 @@ public interface IVersionResponsMapper {
             @Mapping(source = "name", target = "name")
     })
     VersionResponse toVersionResponse (Version version);
+    List<VersionResponse> toListVersionResponse (List<Version> versionList);
 }
