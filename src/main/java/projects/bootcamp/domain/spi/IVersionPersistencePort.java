@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface IVersionPersistencePort {
     Version save(Version version);
-    List<Version> getAll(int page, int size, String orderByProperty, boolean direction);
+    List<Version> getAllByPagination(int page, int size, String orderByProperty, boolean direction);
+    List<Version> getAll(String orderByProperty, boolean direction);
 }

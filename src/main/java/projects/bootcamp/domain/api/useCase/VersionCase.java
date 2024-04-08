@@ -25,12 +25,14 @@ public class VersionCase implements IVersionServicePort {
 
     @Override
     public List<Version> getAll(int page, int size, String orderByProperty, boolean direction, int idBootcamp) {
-        List<Version> versions = versionPersistencePort.getAll(page, size, orderByProperty, direction );
-        return filterByBootcamp(versions, idBootcamp);
+        if (idBootcamp == 0) {
+            return versionPersistencePort.getAllByPagination(page, size, orderByProperty, direction );
+        } else {
+            List<Version> versions = versionPersistencePort.getAll(orderByProperty, direction);
+            return filterByBootcamp(versions, idBootcamp);
+        }
     }
-
     private List<Version> filterByBootcamp (List<Version> versions, int idBootcamp) {
-        if (idBootcamp == 0) return  versions;
         return versions.stream().filter(version -> version.getBootcamp().getIdBootcamp() == idBootcamp).toList();
     }
 }
