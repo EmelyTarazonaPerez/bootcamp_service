@@ -22,7 +22,7 @@ public interface IVersionEntityMapper {
     })
     Version toVersion (VersionEntity versionEntity);
     List<Version> toListVersion (Page<VersionEntity> list);
-
+    List<Version> toListVersion (List<VersionEntity> list);
     @InheritInverseConfiguration
     VersionEntity toVersionEntity (Version version);
 }

@@ -2,6 +2,7 @@ package projects.bootcamp.adapters.driven.jpa.mysql.adapter;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import projects.bootcamp.adapters.driven.jpa.mysql.utils.DataOrdering;
 import projects.bootcamp.adapters.driven.jpa.mysql.entity.VersionEntity;
@@ -30,8 +31,13 @@ public class VersionAdapter implements IVersionPersistencePort {
         }
     }
     @Override
-    public List<Version> getAll(int page, int size, String orderByProperty, boolean direction) {
+    public List<Version> getAllByPagination(int page, int size, String orderByProperty, boolean direction) {
         Pageable pageable = DataOrdering.getOrdering(page, size, direction, orderByProperty);
         return versionEntityMapper.toListVersion(versionRepository.findAll(pageable));
+    }
+    @Override
+    public List<Version> getAll(String orderByProperty, boolean direction) {
+        Sort sort = DataOrdering.getSort(direction, orderByProperty);
+        return versionEntityMapper.toListVersion(versionRepository.findAll(sort));
     }
 }

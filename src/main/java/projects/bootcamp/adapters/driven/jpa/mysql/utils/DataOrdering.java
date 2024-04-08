@@ -14,4 +14,9 @@ public class DataOrdering {
         return PageRequest.of(page, size, sort);
     }
 
+    public static Sort getSort (boolean direction, String property) {
+        Sort.Order orderPageable = direction ? Sort.Order.desc(property) : Sort.Order.asc(property);
+        return Sort.by(orderPageable);
+    }
+
 }
